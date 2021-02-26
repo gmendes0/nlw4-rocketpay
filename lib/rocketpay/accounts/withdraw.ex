@@ -12,7 +12,7 @@ defmodule Rocketpay.Accounts.Withdraw do
       {:error, _failed_operation, failed_value, _changes_so_far} ->
         {:error, failed_value}
 
-      {:ok, %{update_balance: account}} ->
+      {:ok, %{account_withdraw: account}} ->
         {:ok, account}
     end
   end
