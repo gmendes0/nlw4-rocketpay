@@ -25,7 +25,7 @@ defmodule RocketpayWeb.AccountController do
   def transaction(conn, params) do
     with {:ok, %TransactionResponse{} = transaction} <- Rocketpay.transaction(params) do
       conn
-      |> put_status(200)
+      |> put_status(:ok)
       |> render(:transaction, transaction: transaction)
     end
   end

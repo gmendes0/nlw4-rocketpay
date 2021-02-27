@@ -18,9 +18,17 @@ config :rocketpay, RocketpayWeb.Endpoint,
   pubsub_server: Rocketpay.PubSub,
   live_view: [signing_salt: "ejPqofSo"]
 
+# Configures UUID
 config :rocketpay, Rocketpay.Repo,
   migration_primary_key: [type: :binary_id],
   migration_foreign_key: [type: :binary_id]
+
+# Configures Basic Auth
+# TODO, move variables to .env
+# TODO, use JWT instead Basic Auth
+config :rocketpay, :basic_auth,
+  username: "banana",
+  password: "nanica123"
 
 # Configures Elixir's Logger
 config :logger, :console,
