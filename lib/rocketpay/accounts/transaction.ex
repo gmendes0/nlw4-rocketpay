@@ -2,6 +2,7 @@ defmodule Rocketpay.Accounts.Transaction do
   alias Ecto.Multi
   alias Rocketpay.Repo
   alias Rocketpay.Accounts.Operation
+  alias Rocketpay.Transactions.Response, as: TransactionResponse
 
   def call(%{"from" => sender_id, "to" => receiver_id, "value" => value}) do
     withdraw_params = build_params(sender_id, value)
@@ -21,7 +22,7 @@ defmodule Rocketpay.Accounts.Transaction do
         {:error, failed_value}
 
       {:ok, %{withdraw: sender_account, deposit: receiver_account}} ->
-        {:ok, %{sender: sender_account, receiver: receiver_account}}
+        {:ok, TransactionResponse.build(sender_account, receiver_account)}
     end
   end
 end
